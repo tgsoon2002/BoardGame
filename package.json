@@ -1,0 +1,16 @@
+{
+  "name": "todolistapi",
+  "version": "1.0.0",
+  "description": "RESTful todolistapi",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo"
+  },
+  "author": "Kien Nguyen",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.15.5",
+    "mongoose": "^4.11.13"
+  }
+}
