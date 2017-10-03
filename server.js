@@ -5,6 +5,7 @@ port = process.env.PORT || 3000,
 mongoose = require('mongoose'),
 
 Task = require('./api/models/todoListModel'), //created model loading here
+Game = require('./api/models/gameListModel'),
 bodyParser = require('body-parser');
 
 // mongoose instance connection url connection
@@ -19,6 +20,7 @@ app.use(bodyParser.json());
 
 
 var routes = require('./api/routes/todoListRoutes'); //importing route
+var routes = require('./api/routes/gameListRoutes'); //importing route
 routes(app); //register the route
 
 app.use(function(req, res) {
