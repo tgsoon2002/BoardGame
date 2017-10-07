@@ -1,0 +1,44 @@
+{
+    "status": "NewGame",
+    "gameInfo": {
+        "_id": "59d87a336ed88201e8804968",
+        "name": "brand new game",
+        "BoardgameName": "TerrafromingMars",
+        "__v": 0,
+        "status": "open",
+        "players": [
+            {
+                "playerName": "Kien",
+                "rank": 20,
+                "_id": "59d87a336ed88201e8804969"
+            },
+            {
+                "rank": 20,
+                "playerName": "Nguyen",
+                "_id": "59d87be63a719346dc070f63"
+            },
+            {
+                "rank": 20,
+                "playerName": "hai",
+                "_id": "59d87c1640becd196c2d43d2"
+            },
+            {
+                "htPro": 1,
+                "htRes": 0,
+                "enPro": 1,
+                "enRes": 0,
+                "plPro": 1,
+                "plRes": 0,
+                "tiPro": 1,
+                "tiRes": 0,
+                "stPro": 1,
+                "stRes": 0,
+                "mcPro": 0,
+                "mcRes": 32,
+                "rank": 20,
+                "playerName": "b",
+                "_id": "59d87ce595b80310243bb746"
+            }
+        ]
+    }
+}

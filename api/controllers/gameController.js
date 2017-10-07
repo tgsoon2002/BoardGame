@@ -25,14 +25,35 @@ exports.list_all_open_game = function(req, res) {
 
 
 exports.create_a_game = function(req, res) {
-  console.log("Create a game");
-  var new_task = new Game(req.body);
-  console.log(new_task);
-  new_task.save(function(err, task) {
+  var  info= {
+    name: req.body.name,
+  BoardgameName: req.body.BoardgameName,
+  status: req.body.status,
+  players: [ { 
+    playerName: req.body.playerName, 
+    rank: 20 ,
+    mcRes : 32 ,
+    mcPro : 0,
+    stRes : 0,
+    stPro : 1,
+    tiRes : 0,
+    tiPro : 1,
+    plRes : 0,
+    plPro : 1,
+    enRes : 0,
+    enPro : 1,
+    htRes : 0,
+    htPro : 1  
+  } ]
+}
+var newGame  = new Game(info);
+  console.log(req.body);
+  newGame.save(function(err, gameInfo) {
     
     if (err)
       res.send(err);
-    res.json(task);
+    res.json({"status":"Welcome Back",gameInfo});
+    
   });
 };
 
@@ -54,22 +75,49 @@ exports.close_game = function(req, res) {
     res.json(task);
   });
 };
-exports.add_player = function(req, res) {
-  Game.findById({_id: req.params.taskId}, function(err,result){
-    if(result.players.length <5){
-      resul.players.forEach(function(element) {
-        console.log(element.playerName);
-      }, this);
-      Game.findByIdAndUpdate({_id: req.params.taskId},{$push:{players:req.body}},function(err,task){
-        if (err)
-        res.send(err);
-      });
-    }
-    else{
-      res.json({status:"full"});
-    }
+exports.add_player = function(req, res) { 
+  var flag = false;
+  console.log(req.body.playerName);
+  Game.findById({_id: req.params.taskId}, function(err,gameInfo){
     if (err)
       res.send(err);
-    res.json(result);
+    gameInfo.players.forEach(function(element) {
+        if(element.playerName == req.body.playerName){
+            flag = true;
+          }
+        },this);
+        
+      if(gameInfo.players.length <5 && !flag){
+      // set tag to see if player exist
+        var newPlayer = 
+        { 
+          playerName: req.body.playerName, 
+          rank: 20 ,
+          mcRes : 32 ,
+          mcPro : 0,
+          stRes : 0,
+          stPro : 1,
+          tiRes : 0,
+          tiPro : 1,
+          plRes : 0,
+          plPro : 1,
+          enRes : 0,
+          enPro : 1,
+          htRes : 0,
+          htPro : 1  
+        }
+        Game.findByIdAndUpdate({_id: req.params.taskId},{$push:{players:newPlayer}},function(err,task){
+          if (err)
+            res.send(err);
+        });
+        res.json({"status":"NewGame"});  
+    }
+    else if (!flag){
+      res.json({"status":"full"});
+    }
+    else{
+      res.json({"status":"Welcome Back",gameInfo});
+    }
+    
   });  
 };

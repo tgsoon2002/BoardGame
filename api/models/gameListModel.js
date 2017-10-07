@@ -14,12 +14,25 @@ var GameSchema = new Schema({
   players: 
     [{
       playerName: String,
-      rank:Number
-    }]    
+      rank : Number,
+      mcRes : Number,
+      mcPro : Number,
+      stRes : Number,
+      stPro : Number,
+      tiRes : Number,
+      tiPro : Number,
+      plRes : Number,
+      plPro : Number,
+      enRes : Number,
+      enPro : Number,
+      htRes : Number,
+      htPro : Number
+      }]    
   ,
   status: {
     type:String,
-    enum: ['open', 'completed']
+    enum: ['open', 'completed'],
+    default:"open"
   }
 });
 
