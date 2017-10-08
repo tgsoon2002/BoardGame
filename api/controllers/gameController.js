@@ -121,3 +121,31 @@ exports.add_player = function(req, res) {
     
   });  
 };
+
+exports.save_game = function(req,res){
+  
+  
+  // db.boardgames.update({name:"gg","players.playerName":"hai"},{$set:{"players.$.mcRes":33}} );
+  Game.findOneAndUpdate({_id: req.body.gameID,"players.playerName":req.body.playerName},{$set:
+    { 
+      'players.$.rank': parseInt(req.body.rank) ,
+      'players.$.mcRes' : parseInt(req.body.mcRes),
+      'players.$.mcPro' : parseInt(req.body.mcPro),
+      'players.$.stRes' : parseInt(req.body.stRes),
+      'players.$.stPro' : parseInt(req.body.stPro),
+      'players.$.tiRes' : parseInt(req.body.tiRes),
+      'players.$.tiPro' : parseInt(req.body.tiPro),
+      'players.$.plRes' : parseInt(req.body.plRes),
+      'players.$.plPro' : parseInt(req.body.plPro),
+      'players.$.enRes' : parseInt(req.body.enRes),
+      'players.$.enPro' : parseInt(req.body.enPro),
+      'players.$.htRes' : parseInt(req.body.htRes),
+      'players.$.htPro' : parseInt(req.body.htPro)
+      
+    }
+  },function(err,gameInfo){
+    if (err)
+      res.send(err);
+  });
+  res.json({"status":"Saved"});
+};

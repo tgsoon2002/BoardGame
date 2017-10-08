@@ -42,3 +42,6 @@
         ]
     }
 }
+
+
+db.getCollection('boardgames').findAndModify({query:{_id:"59d95ca9b115060012421835"},update: { $set: { status: "complete" },upsert: true }})

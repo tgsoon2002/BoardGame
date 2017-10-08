@@ -1,0 +1,3 @@
+use Cluster0
+show collections
+db.boardgames.find();

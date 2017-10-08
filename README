@@ -1,3 +1,7 @@
 Follow tutorial with this link
 https://www.codementor.io/olatundegaruba/nodejs-restful-apis-in-10-minutes-q0sgsfhbd
 remember to install body-parser by ">>npm install body-parser --save"
+This project push to heroku repository
+>>git push heroku master  // use this to push.
+v 1.0.3
+-Can save player resouce, rank, Production

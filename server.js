@@ -13,7 +13,9 @@ mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://tgsoon2002:admin@cluster0-shard-00-00-soco1.mongodb.net:27017,cluster0-shard-00-01-soco1.mongodb.net:27017,cluster0-shard-00-02-soco1.mongodb.net:27017/Cluster0?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin',{
   useMongoClient:true
 }); 
-
+// mongoose.connect('mongodb://localhost/TodoListDb',{
+//   useMongoClient:true
+// });
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
