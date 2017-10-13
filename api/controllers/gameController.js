@@ -25,28 +25,19 @@ exports.list_all_open_game = function(req, res) {
 
 
 exports.create_a_game = function(req, res) {
-  var  info= {
-    name: req.body.name,
+  var  info = {
+  name: req.body.name,
   BoardgameName: req.body.BoardgameName,
   status: req.body.status,
   players: [ { 
     playerName: req.body.playerName, 
     rank: 20 ,
-    mcRes : 32 ,
-    mcPro : 0,
-    stRes : 0,
-    stPro : 1,
-    tiRes : 0,
-    tiPro : 1,
-    plRes : 0,
-    plPro : 1,
-    enRes : 0,
-    enPro : 1,
-    htRes : 0,
-    htPro : 1  
+    resouce :[32,0,0,0,0,0],
+    production :[0,1,1,1,1,1]
   } ]
-}
-var newGame  = new Game(info);
+  }
+
+  var newGame  = new Game(info);
   console.log(req.body);
   newGame.save(function(err, gameInfo) {
     
@@ -93,18 +84,8 @@ exports.add_player = function(req, res) {
         { 
           playerName: req.body.playerName, 
           rank: 20 ,
-          mcRes : 32 ,
-          mcPro : 0,
-          stRes : 0,
-          stPro : 1,
-          tiRes : 0,
-          tiPro : 1,
-          plRes : 0,
-          plPro : 1,
-          enRes : 0,
-          enPro : 1,
-          htRes : 0,
-          htPro : 1  
+          resouce :[32,0,0,0,0,0],
+          production :[0,1,1,1,1,1]  
         }
         Game.findByIdAndUpdate({_id: req.params.taskId},{$push:{players:newPlayer}},function(err,task){
           if (err)
@@ -116,6 +97,7 @@ exports.add_player = function(req, res) {
       res.json({"status":"full"});
     }
     else{
+      console.log(gameInfo);
       res.json({"status":"Welcome Back",gameInfo});
     }
     
@@ -123,29 +105,36 @@ exports.add_player = function(req, res) {
 };
 
 exports.save_game = function(req,res){
-  
-  
-  // db.boardgames.update({name:"gg","players.playerName":"hai"},{$set:{"players.$.mcRes":33}} );
   Game.findOneAndUpdate({_id: req.body.gameID,"players.playerName":req.body.playerName},{$set:
     { 
       'players.$.rank': parseInt(req.body.rank) ,
-      'players.$.mcRes' : parseInt(req.body.mcRes),
-      'players.$.mcPro' : parseInt(req.body.mcPro),
-      'players.$.stRes' : parseInt(req.body.stRes),
-      'players.$.stPro' : parseInt(req.body.stPro),
-      'players.$.tiRes' : parseInt(req.body.tiRes),
-      'players.$.tiPro' : parseInt(req.body.tiPro),
-      'players.$.plRes' : parseInt(req.body.plRes),
-      'players.$.plPro' : parseInt(req.body.plPro),
-      'players.$.enRes' : parseInt(req.body.enRes),
-      'players.$.enPro' : parseInt(req.body.enPro),
-      'players.$.htRes' : parseInt(req.body.htRes),
-      'players.$.htPro' : parseInt(req.body.htPro)
-      
+      'players.$.resouce' : req.body.resouce,
+      'players.$.production' : req.body.production
     }
   },function(err,gameInfo){
     if (err)
       res.send(err);
   });
   res.json({"status":"Saved"});
+};
+
+exports.save_Game_State = function(req,res){
+  console.log(req.body);
+  Game.findOneAndUpdate({_id: req.body.gameID},{$set:
+    { 
+      'OxygenLevel': req.body.oxygen ,
+      'TemperatureLevel' : req.body.temperature,
+      'NumberOceanTile' : req.body.ocean,
+      'Generation': req.body.gen
+    }
+  },function(err,gameInfo){
+    if (err)
+      res.send(err);
+    console.log(gameInfo);
+    res.json({"Status":"SaveState",gameInfo});
+  });
+};
+
+exports.End_Turn = function(req,res){
+
 };

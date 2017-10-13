@@ -8,25 +8,21 @@ var GameSchema = new Schema({
     type: String,
     required: 'Kindly enter the name of the task'
   },
-  BoardgameName: {
-    type: String      
+  BoardgameName: String   ,
+  TemperatureLevel : Number,
+  OxygenLevel : 
+  {
+    type:Number,
+    default:0
   },
+  NumberOceanTile : Number ,
+  Generation : Number,
   players: 
     [{
       playerName: String,
       rank : Number,
-      mcRes : Number,
-      mcPro : Number,
-      stRes : Number,
-      stPro : Number,
-      tiRes : Number,
-      tiPro : Number,
-      plRes : Number,
-      plPro : Number,
-      enRes : Number,
-      enPro : Number,
-      htRes : Number,
-      htPro : Number
+      resouce :[],
+      production :[]
       }]    
   ,
   status: {

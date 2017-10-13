@@ -17,6 +17,8 @@ module.exports = function(app) {
   app.route('/boardgame/player/:taskId')
     .post(gameController.add_player);
 
-  app.route('/boardgame/SaveGame')
+  app.route('/boardgame/SavePlayer')
     .post(gameController.save_game)
+    app.route('/boardgame/SaveGameState')
+    .post(gameController.save_Game_State)
 };

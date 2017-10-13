@@ -21,10 +21,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
-var routes = require('./api/routes/todoListRoutes'); //importing route
-var routes = require('./api/routes/gameListRoutes'); //importing route
-routes(app); //register the route
-
+var routes1 = require('./api/routes/todoListRoutes'); //importing route
+var routes2 = require('./api/routes/gameListRoutes'); //importing route
+routes1(app);
+routes2(app); //register the route
 app.use(function(req, res) {
     res.status(404).send({url: req.originalUrl + ' not found'})
   });
