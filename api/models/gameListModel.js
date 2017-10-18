@@ -19,6 +19,7 @@ var GameSchema = new Schema({
   Generation : Number,
   players: 
     [{
+      corporation : String,
       playerName: String,
       rank : Number,
       resouce :[],
